@@ -1,0 +1,105 @@
+Documentaion for Jsc.java 0.1
+
+A Jsc object represents and controls the values of
+the individual balls/frames of a game of bowling. It automatically
+corrects errors to make sure no impossible frames can happen.
+it also provides customization to make the game how you want,
+more information about that is in the "config files" section.
+
+TABLE OF CONTENTS
+1. Config Files
+2. Constructors
+3. Instance Variables
+4. Methods
+
+
+--- Part One -------
+--- Config Files ---
+--------------------
+
+	Config files for BowlingGame objects are plaintext files that follow
+a specific (but simple) syntax. You can make a comment by prefacing a line
+with a pound sign (#). Comments will be ignored in the program, so you
+don't need to worry about any special syntax. Lines that don't have a colon
+(:) will also be ignored, but it is recommended that you use pound signs to
+make it clear to anybody who might be reading the file.
+	Variables are set by using the syntax "[variable]:[value]". All spaces
+and tabs in between values are ignored. An example of a default config file with
+valid syntax is below (minus the box decorations, of course):
+
+/-- example.bowl ---------------------\
+|# This is a comment.		      |
+|max_frames : 10		      |
+|num_pins   : 10		      |
+|     no_tap:10		      	      |
+\-------------------------------------/
+
+max_frames: maximum frames the game has
+num_pins: number of pins the game is being played with
+no_tap: if more than or equal to this number of pins fall on first ball, it will
+	be rounded up to a strike.
+
+--- Part Two -------
+--- Constructors ---
+--------------------
+
+Jsc(File config) -> instantiates with custom config file
+Jsc() ------------> instantiates with default config file, defaults.bowl
+
+
+--- Part Three -----------
+--- Instance Variables ---
+--------------------------
+
+-- config variables
+int max_frames ---> the max_frames value from your config file.
+int num_pins -----> the num_pins value from your config file.
+int no_tap -------> the no_tap value from your config file.
+File config_file -> current loaded config file.
+
+
+--- Part Four ---
+--- Methods -----
+
+void applyConfig(File conf) - applies a config file. This is dangerous to use mid-game,
+			      so just let the constructor use it.
+
+void initFrames() - (re)sets all frame values to default, -1.
+
+int getCurrentFrame() - returns index of the first frame with a negative (default) value.
+			Note: frame indexes start at 0.
+
+int getCurrentBall() - returns the index of the first ball within a frame to have a negative
+		       (default) value. Note: ball indexes start at 0.
+
+void clearCurrentFrame() - resets the current frame, as defined by getCurrentFrame().
+
+int getCurrentFramePinfall() - gets total pinfall of the current frame, as defined by 
+			       getCurrentFrame().
+
+int getFramePinfall(int frame) - gets total pinfall of frame "frame"
+
+boolean isValidFrame(int val) - returns true if "val" is a valid frame index.
+
+boolean isValidBall(int frame, int ball) - returns true if "frame" and "ball" are valid frame 
+					   and ball indexes.
+
+void addValue(int val) - sets the first empty ball to val. Effectively, it represents adding 
+			 a ball to a bowling game.
+
+void addValue(String val) - String version of addValue. Supports "Xx/-" characters, or parses 
+		 	    an integer from the string.
+
+void replaceFrame(int frame, int[] vals) - replaces frame at index "frame" with the array "vals".
+
+void replaceValue(int frame, int ball, int val) - replaces ball "ball" of frame "frame" with val.
+
+int[] getFrame(int frame) - returns an array of the balls of frame "frame"
+
+boolean isStrike(int frame) - returns true if frame "frame" is a strike (index 0 of frame >= num_pins)
+
+boolean isNoTapStrike(int frame) - returns true if frame "frame" is a no-tap strike (index 0 of
+				   frame >= no_tap)
+
+boolean isSpare(int frame) - returns true if frame "frame" is a spare (all values of frame added >=
+			     num_pins)

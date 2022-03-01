@@ -1,0 +1,44 @@
+Documentation for JscGui.java 0.1
+
+JscGui is a simple text-based display utility for Jsc. JscGui hopes to keep compatibility
+with as many Jsc versions as possible.
+
+TABLE OF CONTENTS
+1. Instance Variables
+2. Methods
+
+
+--- Part One -------------
+--- Instance Variables ---
+--------------------------
+
+ArrayList<Jsc> player_games ----> ArrayList holding all player Jsc objects.
+ArrayList<String> player_names -> ArrayList holding player names with indicis corresponding
+				  to player_games.
+File jsc_conf ------------------> "defaults.bowl" file. currently unused, will be 
+				  implemented in future versions.
+final String VERSION -----------> program version.
+
+
+--- Part Two ---
+--- Methods ----
+
+static void main(String[] args) - Main method. self-explanitory.
+
+=== Session Management Methods ===
+
+static void mainMenu() - unused, will be implemented in future versions.
+
+static void initPlayer() - creates prompt for a player to add a new player. Appends to
+			   player_names and player_games. Does not clear the screen.
+
+=== Display Utility Methods ===
+
+static void cls() - clears the screen. Hopefully implemented in a windows-friendly way.
+
+static String printFile() - returns a file's contents with newline characters. So far
+			    only used for the beginning art.
+
+=== Game Display Methods ===
+
+static void printGame(int ndx) - prints the game of the player at index ndx.
