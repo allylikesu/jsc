@@ -12,12 +12,17 @@ TABLE OF CONTENTS
 --- Instance Variables ---
 --------------------------
 
-ArrayList<Jsc> player_games ----> ArrayList holding all player Jsc objects.
-ArrayList<String> player_names -> ArrayList holding player names with indicis corresponding
-				  to player_games.
-File jsc_conf ------------------> "defaults.bowl" file. currently unused, will be 
-				  implemented in future versions.
-final String VERSION -----------> program version.
+ArrayList<Jsc> player_games - ArrayList holding all player Jsc objects.
+
+ArrayList<String> player_names - holding player names with indicis corresponding to player_games.
+
+File jsc_conf - "defaults.bowl" file. currently unused, will be implemented in future versions.
+
+boolean quitGame -set to false by default. If set to true, the player will be returned to the main menu next game cycle.
+
+boolean exit - set to false by default. If set to true, the entire program will stop next game cycle.
+
+final String VERSION - program version.
 
 
 --- Part Two ---
@@ -42,3 +47,7 @@ static String printFile() - returns a file's contents with newline characters. S
 === Game Display Methods ===
 
 static void printGame(int ndx) - prints the game of the player at index ndx.
+
+=== Gameplay Methods ===
+
+static void parsePlayerInput(String input) - parses player input and translates it to game modification. Command documentation can be found in the JscGuiCommandsHelp.docs file.

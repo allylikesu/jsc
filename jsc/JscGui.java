@@ -15,10 +15,12 @@ public class JscGui {
 	public static ArrayList<Jsc> player_games = new ArrayList<Jsc>();
 	public static ArrayList<String> player_names = new ArrayList<String>();
 	public static File jsc_conf = new File("defaults.bowl");
+	public static boolean quitGame = false;
+	public static boolean exit = false;
 	public static final String VERSION = "0.1";
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(in);
+        Scanner scan = new Scanner(in);
 		File ascii = new File("resources/asciiart.txt");
 
 		cls();
@@ -26,21 +28,21 @@ public class JscGui {
 		out.println("Java SCoring system by allison\n");
 		initPlayer();
 		
-		printGame(0);
-		//out.println(player_games.get(0));
-	}
-	public static void start() {
-		Scanner scan = new Scanner(in);
-		File ascii = new File("resources/asciiart.txt");
+		/* game loop */
+		String input;
+		while(!quitGame && !exit) {
+            cls();
+            int currentPlayer = 0; // replace later with dynamic players
+            out.println(player_names.get(currentPlayer) + ":");
+            printGame(currentPlayer);
+            out.println("enter command: ('h' for help)");
 
-		cls();
-		out.println(printFile(ascii));
-		out.println("Java SCoring system by allison\n");
-		initPlayer();
-		
-		printGame(0);
-		//out.println(player_games.get(0));
+            input = scan.nextLine();
+            parsePlayerInput(input);
+		}
+		if(exit) { return; }
 	}
+
 	
 	/* ################################################ */
 	/* ########## Session management methods ########## */
@@ -112,7 +114,7 @@ public class JscGui {
 					append += val + " ";
 				}
 				else {
-					append += " ";
+					append += "_ ";
 				}
 			}
 			bottomLine += append;
@@ -121,5 +123,14 @@ public class JscGui {
 		topLine += "|";
 		bottomLine += "|";
 		out.println(topLine + "\n" + bottomLine);
+	}
+
+	/* ###################################### */
+	/* ########## Gameplay Methods ########## */
+	/* ###################################### */
+
+	public static String parsePlayerInput(String input) {
+        player_games.get(0).addValue((int)(Math.random()*10) + 1);
+        return "";
 	}
 }
