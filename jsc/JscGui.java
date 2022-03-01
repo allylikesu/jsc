@@ -1,6 +1,8 @@
 /*
  * JscGui: A simple but powerful GUI for the Jsc system.
  */
+package jsc;
+
 import static java.lang.System.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +18,18 @@ public class JscGui {
 	public static final String VERSION = "0.1";
 
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(in);
+		File ascii = new File("resources/asciiart.txt");
+
+		cls();
+		out.println(printFile(ascii));
+		out.println("Java SCoring system by allison\n");
+		initPlayer();
+		
+		printGame(0);
+		//out.println(player_games.get(0));
+	}
+	public static void start() {
 		Scanner scan = new Scanner(in);
 		File ascii = new File("resources/asciiart.txt");
 

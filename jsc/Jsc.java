@@ -1,6 +1,8 @@
 /* 
  * Java SCoring: A simple but powerful manual bowling scoring system backend.
  */
+package jsc;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
