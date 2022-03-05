@@ -130,7 +130,6 @@ public class JscGui {
 	/* ###################################### */
 
 	public static String parsePlayerInput(String input) {
-		//player_games.get(0).addValue((int)(Math.random()*10) + 1);
 		player_games.get(0).addValue(input);
 		return "";
 	}

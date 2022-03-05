@@ -14,6 +14,7 @@ public class Jsc {
 	public int max_frames;
 	public int num_pins;
 	public int no_tap;
+	public int balls_per_frame;
 	public File config_file;
 
 	public int current_frame;
@@ -54,6 +55,9 @@ public class Jsc {
 						case "no_tap":
 							this.no_tap = Integer.parseInt(splitLine[1]);
 							break;
+						case "balls_per_frame":
+							this.balls_per_frame = Integer.parseInt(splitLine[1]);
+							break;
 					}
 				}
 			}
@@ -68,11 +72,25 @@ public class Jsc {
 	/* initialize the "frames" ArrayList. */
 	public void initFrames() {
 		this.frames = new ArrayList<int[]>();
-		for(int i = 0; i < this.max_frames; i++) { // add empty arrays to ArrayList
-			frames.add(new int[2]);
+		for(int i = 0; i < this.max_frames - 1; i++) { // add empty arrays to ArrayList
+			frames.add(new int[this.balls_per_frame]);
 			for(int j = 0; j < frames.get(i).length; j++) { // fill sub-arrays with -1
 				frames.get(i)[j] = -1;
 			}
+		}
+
+		// add last frame; length of 3 if balls_per_frame < 3
+		if(this.balls_per_frame < 3) {
+			frames.add(new int[3]);
+			for(int v = 0; v < frames.get(frames.size() - 1).length; v++) {
+				frames.get(frames.size() - 1)[v] = -1;
+			}
+		}
+		else {
+			frames.add(new int[this.balls_per_frame]);
+		}
+		for(int v = 0; v < frames.get(frames.size() - 1).length; v++) {
+			frames.get(frames.size() - 1)[v] = -1;
 		}
 	}
 	

@@ -38,6 +38,7 @@ max_frames: maximum frames the game has
 num_pins: number of pins the game is being played with
 no_tap: if more than or equal to this number of pins fall on first ball, it will
 	be rounded up to a strike.
+balls_per_frame: balls per frame. Useful for duckpin/candlepin.
 
 --- Part Two -------
 --- Constructors ---
@@ -55,6 +56,7 @@ Jsc() ------------> instantiates with default config file, defaults.bowl
 int max_frames ---> the max_frames value from your config file.
 int num_pins -----> the num_pins value from your config file.
 int no_tap -------> the no_tap value from your config file.
+int balls_per_frame -> the balls_per_frame value from your config file.
 File config_file -> current loaded config file.
 
 

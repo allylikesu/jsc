@@ -2,3 +2,4 @@
 max_frames : 10
 num_pins   : 10
      no_tap:10
+balls_per_frame : 2
