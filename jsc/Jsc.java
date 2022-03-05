@@ -169,10 +169,14 @@ public class Jsc {
 	public void addValue(String val) {
 		switch(val.toLowerCase()) {
 			case "x":
-				addValue(this.num_pins - getCurrentFramePinfall());
+				if(getCurrentBall() <= 0) {
+					addValue(this.num_pins - getCurrentFramePinfall());
+				}
 				break;
 			case "/":
-				addValue(this.num_pins - getCurrentFramePinfall());
+				if(getCurrentBall() >= 1) {
+					addValue(this.num_pins - getCurrentFramePinfall());
+				}
 				break;
 			case "-":
 				addValue(0);
