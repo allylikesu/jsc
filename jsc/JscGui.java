@@ -31,14 +31,14 @@ public class JscGui {
 		/* game loop */
 		String input;
 		while(!quitGame && !exit) {
-            cls();
-            int currentPlayer = 0; // replace later with dynamic players
-            out.println(player_names.get(currentPlayer) + ":");
-            printGame(currentPlayer);
-            out.println("enter command: ('h' for help)");
+			cls();
+			int currentPlayer = 0; // replace later with dynamic players
+			out.println(player_names.get(currentPlayer) + ":");
+			printGame(currentPlayer);
+			out.println("enter command: ('h' for help)");
 
-            input = scan.nextLine();
-            parsePlayerInput(input);
+			input = scan.nextLine();
+			parsePlayerInput(input);
 		}
 		if(exit) { return; }
 	}
@@ -130,7 +130,8 @@ public class JscGui {
 	/* ###################################### */
 
 	public static String parsePlayerInput(String input) {
-        player_games.get(0).addValue((int)(Math.random()*10) + 1);
-        return "";
+		//player_games.get(0).addValue((int)(Math.random()*10) + 1);
+		player_games.get(0).addValue(input);
+		return "";
 	}
 }
