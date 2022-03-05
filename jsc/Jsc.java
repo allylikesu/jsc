@@ -97,7 +97,7 @@ public class Jsc {
 		for(int i = 0; i < this.frames.get(getCurrentFrame()).length; i++) {
 			if(this.frames.get(getCurrentFrame())[i] < 0) { return i; }
 		}
-		return this.frames.get(getCurrentFrame()).length;
+		return this.frames.get(getCurrentFrame()).length - 1;
 	}
 
 	/* sets all array values in the current frame (see "getCurrentFrame()") to -1. */
@@ -152,6 +152,9 @@ public class Jsc {
 	 * Also handles setting additional values to 0 in the case of a strike/spare.
 	 */
 	public void addValue(int val) {
+		if(getCurrentFramePinfall() + val > this.num_pins) {
+			val = val - (getCurrentFramePinfall() + val - this.num_pins);
+		}
 		this.frames.get(getCurrentFrame())[getCurrentBall()] = val;
 		/* correct spares/strikes */	
 		if(getCurrentFramePinfall() >= this.num_pins) { // replace negative values with 0 if strike/spare
@@ -166,10 +169,14 @@ public class Jsc {
 	public void addValue(String val) {
 		switch(val.toLowerCase()) {
 			case "x":
-				addValue(this.num_pins - getCurrentFramePinfall());
+				if(getCurrentBall() <= 0) {
+					addValue(this.num_pins - getCurrentFramePinfall());
+				}
 				break;
 			case "/":
-				addValue(this.num_pins - getCurrentFramePinfall());
+				if(getCurrentBall() >= 1) {
+					addValue(this.num_pins - getCurrentFramePinfall());
+				}
 				break;
 			case "-":
 				addValue(0);
